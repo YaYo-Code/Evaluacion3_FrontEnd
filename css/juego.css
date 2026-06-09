@@ -1,0 +1,154 @@
+/* ============================================================
+   juego.css  —  Estilos exclusivos de la pantalla del juego
+   Se carga solo en juego.html, además de estilos.css
+   ============================================================ */
+
+/* Marco que contiene el canvas y todos los controles. */
+.consola {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Caja del lienzo con borde tipo "pantalla de arcade". */
+.pantalla {
+  position: relative;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radio);
+  padding: 12px;
+  box-shadow: var(--sombra);
+}
+
+/* El canvas se dibuja en resolución fija (en JS) y se escala
+   al 100% del ancho. image-rendering: pixelated mantiene el
+   estilo retro nítido al agrandar. */
+#lienzoJuego {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: var(--bg);
+  border-radius: 6px;
+  image-rendering: pixelated;
+  touch-action: manipulation; /* evita zoom al tocar en móvil */
+  cursor: pointer;
+}
+
+/* HUD: marcador y récord superpuestos sobre el canvas. */
+.hud {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  display: flex;
+  gap: 18px;
+  font-family: var(--fuente-titulo);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  pointer-events: none; /* no estorba a los clics del juego */
+}
+
+.hud span {
+  color: var(--muted);
+}
+
+.hud b {
+  color: var(--ink);
+}
+
+/* Capa superpuesta para mensajes (inicio / pausa / game over). */
+.capa {
+  position: absolute;
+  inset: 12px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 6px;
+  padding: 20px;
+}
+
+[data-tema="claro"] .capa {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.capa h2 {
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  margin-bottom: 10px;
+}
+
+.capa p {
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+/* Marcador final destacado en la pantalla de game over. */
+.puntaje-final {
+  font-family: var(--fuente-titulo);
+  font-size: 2.4rem;
+  color: var(--accent);
+  margin: 4px 0 16px;
+}
+
+/* Barra de controles bajo el canvas. */
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
+.controles__grupo {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Fila para escribir el nombre y guardar el puntaje. */
+.guardar-puntaje {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.guardar-puntaje input {
+  padding: 12px 14px;
+  background-color: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radio);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+}
+
+/* Ayuda de controles (teclas) bajo el juego. */
+.ayuda-teclas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 22px;
+}
+
+.ayuda-teclas div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 480px) {
+  .hud {
+    top: 18px;
+    right: 18px;
+    font-size: 0.8rem;
+    gap: 12px;
+  }
+
+  .controles {
+    justify-content: center;
+  }
+}

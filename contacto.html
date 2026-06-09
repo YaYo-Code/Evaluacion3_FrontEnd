@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Formulario de contacto de Dino Runner con validación en JavaScript Vanilla.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <title>Dino Runner · Contacto</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="cabecera">
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="index.html" class="nav__logo">
+        <span class="logo-dino" aria-hidden="true"></span>
+        Dino<span>Runner</span>
+      </a>
+      <ul class="nav__lista" data-menu-lista>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juego.html">Jugar</a></li>
+        <li><a href="instrucciones.html">Cómo jugar</a></li>
+        <li><a href="puntajes.html">Puntajes</a></li>
+        <li><a href="contacto.html" class="activo">Contacto</a></li>
+      </ul>
+      <div class="nav__acciones">
+        <button class="boton-icono" data-tema-boton aria-label="Cambiar tema">☀️</button>
+        <button class="boton-icono nav__hamburguesa" data-menu-boton
+                aria-label="Abrir menú" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contenedor">
+
+      <section class="seccion">
+        <span class="eyebrow">Hablemos</span>
+        <h1 class="titulo-seccion">Contacto</h1>
+        <p class="texto-guia">
+          ¿Encontraste un error o tienes una idea para el juego? Escríbenos.
+          El formulario valida todos los campos antes de enviar.
+        </p>
+      </section>
+
+      <section class="seccion">
+        <!-- Aviso global que muestra el JS (éxito o error) -->
+        <p class="aviso" id="avisoFormulario" role="alert"></p>
+
+        <!-- novalidate: desactivamos la validación nativa para usar la nuestra -->
+        <form class="formulario" id="formContacto" novalidate>
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre"
+                   placeholder="Tu nombre" autocomplete="name">
+            <span class="campo__error" aria-live="polite"></span>
+          </div>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo"
+                   placeholder="tucorreo@ejemplo.com" autocomplete="email">
+            <span class="campo__error" aria-live="polite"></span>
+          </div>
+
+          <div class="campo">
+            <label for="asunto">Asunto</label>
+            <select id="asunto" name="asunto">
+              <option value="">Selecciona una opción…</option>
+              <option value="error">Reportar un error</option>
+              <option value="idea">Proponer una idea</option>
+              <option value="felicitacion">Felicitaciones</option>
+              <option value="otro">Otro</option>
+            </select>
+            <span class="campo__error" aria-live="polite"></span>
+          </div>
+
+          <div class="campo">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5"
+                      placeholder="Cuéntanos en qué podemos ayudarte"></textarea>
+            <span class="campo__error" aria-live="polite"></span>
+          </div>
+
+          <div>
+            <button type="submit" class="boton boton--primario">Enviar mensaje</button>
+          </div>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <span>Dino Runner · Proyecto Web Temática Libre</span>
+      <span>Programación Front End · INACAP · 2026</span>
+    </div>
+  </footer>
+
+  <script src="js/navegacion.js"></script>
+  <script src="js/contacto.js"></script>
+</body>
+</html>

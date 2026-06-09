@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Juega Dino Runner: salta y agáchate para esquivar obstáculos. Hecho con HTML5 Canvas y JavaScript Vanilla.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <title>Dino Runner · Jugar</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/juego.css">
+</head>
+<body>
+
+  <header class="cabecera">
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="index.html" class="nav__logo">
+        <span class="logo-dino" aria-hidden="true"></span>
+        Dino<span>Runner</span>
+      </a>
+      <ul class="nav__lista" data-menu-lista>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juego.html" class="activo">Jugar</a></li>
+        <li><a href="instrucciones.html">Cómo jugar</a></li>
+        <li><a href="puntajes.html">Puntajes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+      <div class="nav__acciones">
+        <button class="boton-icono" data-tema-boton aria-label="Cambiar tema">☀️</button>
+        <button class="boton-icono nav__hamburguesa" data-menu-boton
+                aria-label="Abrir menú" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contenedor">
+      <section class="seccion centrado">
+        <span class="eyebrow">Partida</span>
+        <h1 class="titulo-seccion">Dino Runner</h1>
+        <p class="texto-guia" style="margin: 0 auto;">
+          Toca la pantalla o pulsa <kbd>Espacio</kbd> para empezar.
+        </p>
+      </section>
+
+      <!-- ====================  CONSOLA DEL JUEGO  ==================== -->
+      <section class="consola">
+        <div class="pantalla">
+          <!-- Lienzo donde se dibuja todo el juego -->
+          <canvas id="lienzoJuego" role="img"
+                  aria-label="Área de juego del Dino Runner"></canvas>
+
+          <!-- Marcador y récord superpuestos -->
+          <div class="hud">
+            <span>REC <b id="marcadorRecord">00000</b></span>
+            <span><b id="marcadorPuntaje">00000</b></span>
+          </div>
+
+          <!-- Capa de inicio -->
+          <div class="capa" id="capaInicio">
+            <div>
+              <h2>Presiona para empezar</h2>
+              <p>Salta los cactus y agáchate ante las aves.</p>
+              <button class="boton boton--primario" id="btnIniciar">▶ Comenzar</button>
+            </div>
+          </div>
+
+          <!-- Capa de pausa (oculta al inicio) -->
+          <div class="capa oculto" id="capaPausa">
+            <div>
+              <h2>En pausa</h2>
+              <p>Pulsa <kbd>P</kbd> para continuar.</p>
+            </div>
+          </div>
+
+          <!-- Capa de game over (oculta al inicio) -->
+          <div class="capa oculto" id="capaFin">
+            <div>
+              <h2>¡Game Over!</h2>
+              <p>Tu puntaje</p>
+              <div class="puntaje-final" id="puntajeFinal">00000</div>
+
+              <div class="guardar-puntaje">
+                <input type="text" id="nombreJugador" placeholder="Tu nombre"
+                       maxlength="16" aria-label="Tu nombre para el ranking">
+                <button class="boton boton--secundario" id="btnGuardarPuntaje">
+                  Guardar puntaje
+                </button>
+              </div>
+
+              <p class="mt-grande">
+                <button class="boton boton--primario" id="btnReiniciar">↻ Jugar de nuevo</button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra de controles bajo el canvas -->
+        <div class="controles">
+          <div class="controles__grupo">
+            <button class="boton boton--secundario" id="btnPausa">⏸ Pausa (P)</button>
+            <button class="boton boton--secundario" id="btnSonido">🔊 Sonido</button>
+          </div>
+          <a href="puntajes.html" class="boton boton--secundario">🏆 Ver ranking</a>
+        </div>
+
+        <!-- Ayuda rápida de controles -->
+        <div class="ayuda-teclas">
+          <div><kbd>Espacio</kbd> / <kbd>↑</kbd> Saltar</div>
+          <div><kbd>↓</kbd> Agacharse</div>
+          <div><kbd>P</kbd> Pausa</div>
+          <div>📱 Toca la pantalla para saltar</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <span>Dino Runner · Proyecto Web Temática Libre</span>
+      <span>Programación Front End · INACAP · 2026</span>
+    </div>
+  </footer>
+
+  <!-- Primero la navegación compartida, luego el motor del juego -->
+  <script src="js/navegacion.js"></script>
+  <script src="js/juego.js"></script>
+</body>
+</html>

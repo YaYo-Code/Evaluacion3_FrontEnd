@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tabla de mejores puntajes de Dino Runner, guardados localmente en tu navegador.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <title>Dino Runner · Puntajes</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="cabecera">
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="index.html" class="nav__logo">
+        <span class="logo-dino" aria-hidden="true"></span>
+        Dino<span>Runner</span>
+      </a>
+      <ul class="nav__lista" data-menu-lista>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juego.html">Jugar</a></li>
+        <li><a href="instrucciones.html">Cómo jugar</a></li>
+        <li><a href="puntajes.html" class="activo">Puntajes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+      <div class="nav__acciones">
+        <button class="boton-icono" data-tema-boton aria-label="Cambiar tema">☀️</button>
+        <button class="boton-icono nav__hamburguesa" data-menu-boton
+                aria-label="Abrir menú" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contenedor">
+
+      <section class="seccion">
+        <span class="eyebrow">Salón de la fama</span>
+        <h1 class="titulo-seccion">Mejores puntajes</h1>
+        <p class="texto-guia">
+          Estas marcas se guardan en tu navegador con <code>localStorage</code>.
+          Solo se muestran las 10 mejores.
+        </p>
+      </section>
+
+      <section class="seccion">
+        <div class="tarjeta" style="padding: 0; overflow: hidden;">
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th>Pos.</th>
+                <th>Jugador</th>
+                <th>Puntaje</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <!-- Las filas se generan con JavaScript -->
+            <tbody id="cuerpoRanking"></tbody>
+          </table>
+
+          <!-- Mensaje cuando todavía no hay puntajes -->
+          <p class="estado-vacio" id="rankingVacio">
+            Aún no hay puntajes. ¡<a href="juego.html">Juega una partida</a>
+            y guarda el tuyo!
+          </p>
+        </div>
+
+        <div class="controles mt-grande">
+          <a href="juego.html" class="boton boton--primario">▶ Sumar un puntaje</a>
+          <button class="boton boton--peligro" id="btnBorrarRanking">
+            🗑 Borrar historial
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <span>Dino Runner · Proyecto Web Temática Libre</span>
+      <span>Programación Front End · INACAP · 2026</span>
+    </div>
+  </footer>
+
+  <script src="js/navegacion.js"></script>
+  <script src="js/puntajes.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dino Runner: un juego de corredor sin fin hecho con HTML5, CSS3 y JavaScript Vanilla. Proyecto de Programación Front End, INACAP.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <title>Dino Runner · Inicio</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ====================  ENCABEZADO + NAVEGACIÓN  ==================== -->
+  <header class="cabecera">
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="index.html" class="nav__logo">
+        <span class="logo-dino" aria-hidden="true"></span>
+        Dino<span>Runner</span>
+      </a>
+
+      <ul class="nav__lista" data-menu-lista>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="juego.html">Jugar</a></li>
+        <li><a href="instrucciones.html">Cómo jugar</a></li>
+        <li><a href="puntajes.html">Puntajes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+
+      <div class="nav__acciones">
+        <button class="boton-icono" data-tema-boton aria-label="Cambiar tema">☀️</button>
+        <button class="boton-icono nav__hamburguesa" data-menu-boton
+                aria-label="Abrir menú" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ====================  CONTENIDO PRINCIPAL  ==================== -->
+  <main>
+    <div class="contenedor">
+
+      <!-- Hero / portada -->
+      <section class="hero">
+        <div class="hero__texto">
+          <span class="eyebrow">Corredor sin fin · 100% offline</span>
+          <h1 class="hero__titulo">Salta cactus, esquiva aves y bate tu <b>récord</b>.</h1>
+          <p class="texto-guia">
+            Un homenaje al clásico juego que aparece cuando se cae internet,
+            reconstruido desde cero con HTML5 Canvas, CSS3 y JavaScript puro.
+            Sin librerías, sin frameworks: solo código propio.
+          </p>
+          <div class="hero__acciones">
+            <a href="juego.html" class="boton boton--primario">▶ Jugar ahora</a>
+            <a href="instrucciones.html" class="boton boton--secundario">Ver instrucciones</a>
+          </div>
+        </div>
+        <div class="hero__panel" aria-hidden="true"></div>
+      </section>
+
+      <hr class="horizonte">
+
+      <!-- Características del proyecto -->
+      <section class="seccion">
+        <span class="eyebrow">Qué incluye</span>
+        <h2 class="titulo-seccion">Hecho con buenas prácticas</h2>
+        <p class="texto-guia">
+          Cada parte del proyecto demuestra una técnica distinta de front end.
+        </p>
+
+        <div class="grilla mt-grande">
+          <article class="tarjeta">
+            <h3>🎮 Motor en Canvas</h3>
+            <p class="texto-guia">
+              Bucle de animación con <code>requestAnimationFrame</code>,
+              físicas de salto y detección de colisiones por cajas.
+            </p>
+          </article>
+          <article class="tarjeta">
+            <h3>🏆 Ranking persistente</h3>
+            <p class="texto-guia">
+              Los puntajes se guardan en <code>localStorage</code> y se
+              ordenan en una tabla de mejores marcas.
+            </p>
+          </article>
+          <article class="tarjeta">
+            <h3>📱 Diseño responsive</h3>
+            <p class="texto-guia">
+              Variables CSS, <em>media queries</em> y un menú móvil propio
+              para que se vea bien en cualquier pantalla.
+            </p>
+          </article>
+          <article class="tarjeta">
+            <h3>🌗 Modo claro y oscuro</h3>
+            <p class="texto-guia">
+              Interruptor de tema que recuerda tu preferencia entre visitas.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <hr class="horizonte">
+
+      <!-- Llamado final -->
+      <section class="seccion centrado">
+        <h2 class="titulo-seccion">¿Listo para correr?</h2>
+        <p class="texto-guia" style="margin: 0 auto 24px;">
+          La velocidad sube con cada punto. Veamos cuánto aguantas.
+        </p>
+        <a href="juego.html" class="boton boton--primario">▶ Empezar la partida</a>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ====================  PIE DE PÁGINA  ==================== -->
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <span>Dino Runner · Proyecto Web Temática Libre</span>
+      <span>Programación Front End · INACAP · 2026</span>
+    </div>
+  </footer>
+
+  <!-- Solo JS Vanilla, en archivos externos -->
+  <script src="js/navegacion.js"></script>
+</body>
+</html>

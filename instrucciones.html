@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aprende a jugar Dino Runner: controles, mecánicas, obstáculos y consejos para conseguir el mejor puntaje.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <title>Dino Runner · Cómo jugar</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="cabecera">
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="index.html" class="nav__logo">
+        <span class="logo-dino" aria-hidden="true"></span>
+        Dino<span>Runner</span>
+      </a>
+      <ul class="nav__lista" data-menu-lista>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juego.html">Jugar</a></li>
+        <li><a href="instrucciones.html" class="activo">Cómo jugar</a></li>
+        <li><a href="puntajes.html">Puntajes</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+      <div class="nav__acciones">
+        <button class="boton-icono" data-tema-boton aria-label="Cambiar tema">☀️</button>
+        <button class="boton-icono nav__hamburguesa" data-menu-boton
+                aria-label="Abrir menú" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contenedor">
+
+      <section class="seccion">
+        <span class="eyebrow">Manual</span>
+        <h1 class="titulo-seccion">Cómo jugar</h1>
+        <p class="texto-guia">
+          El objetivo es simple: corre lo más lejos posible esquivando todo
+          lo que se cruce. Cuanto más avanzas, más rápido se vuelve.
+        </p>
+      </section>
+
+      <!-- Controles -->
+      <section class="seccion">
+        <h2 class="titulo-seccion">Controles</h2>
+        <div class="grilla">
+          <article class="tarjeta">
+            <h3>⌨️ Teclado</h3>
+            <ul style="list-style:none; display:grid; gap:12px; margin-top:12px;">
+              <li><span class="teclas"><kbd>Espacio</kbd> <kbd>↑</kbd></span> &nbsp; Saltar</li>
+              <li><span class="teclas"><kbd>↓</kbd></span> &nbsp; Agacharse</li>
+              <li><span class="teclas"><kbd>P</kbd></span> &nbsp; Pausar / continuar</li>
+              <li><span class="teclas"><kbd>Enter</kbd></span> &nbsp; Reiniciar tras perder</li>
+            </ul>
+          </article>
+          <article class="tarjeta">
+            <h3>📱 Táctil</h3>
+            <p class="texto-guia" style="margin-top:12px;">
+              Toca cualquier parte de la pantalla del juego para saltar.
+              También sirve para empezar la partida o reiniciar después
+              de un choque.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <hr class="horizonte">
+
+      <!-- Mecánicas -->
+      <section class="seccion">
+        <h2 class="titulo-seccion">Lo que vas a enfrentar</h2>
+        <div class="grilla">
+          <article class="tarjeta">
+            <h3>🌵 Cactus</h3>
+            <p class="texto-guia">
+              Aparecen solos o en grupos de hasta tres. Los más altos exigen
+              un salto bien medido. <strong>Salta</strong> para evitarlos.
+            </p>
+          </article>
+          <article class="tarjeta">
+            <h3>🦅 Aves</h3>
+            <p class="texto-guia">
+              Llegan al superar los 250 puntos y vuelan a distintas alturas.
+              Las bajas se esquivan saltando; las del medio,
+              <strong>agachándote</strong>.
+            </p>
+          </article>
+          <article class="tarjeta">
+            <h3>⚡ Velocidad</h3>
+            <p class="texto-guia">
+              Cada 100 puntos el juego acelera. Mantén la calma: el ritmo
+              sube poco a poco hasta un tope.
+            </p>
+          </article>
+          <article class="tarjeta">
+            <h3>🌙 Día y noche</h3>
+            <p class="texto-guia">
+              Alrededor de los 700 puntos cae la noche y la pantalla se
+              invierte. La estrategia es la misma, ¡pero se ve distinto!
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <hr class="horizonte">
+
+      <!-- Pasos para conseguir buen puntaje -->
+      <section class="seccion">
+        <h2 class="titulo-seccion">Consejos para puntuar alto</h2>
+        <ol class="lista-pasos">
+          <li>Salta lo más tarde posible: saltar antes de tiempo te deja
+              expuesto al siguiente obstáculo.</li>
+          <li>No mantengas el salto. Un toque corto basta para los cactus
+              bajos y te deja listo para reaccionar.</li>
+          <li>Frente a las aves del medio, agáchate y mantén
+              <kbd>↓</kbd> hasta que pasen.</li>
+          <li>Cuando acelere, mira más adelante en la pantalla en lugar de
+              al dino: así anticipas mejor.</li>
+          <li>Al perder, guarda tu puntaje con tu nombre para entrar al
+              <a href="puntajes.html">ranking</a>.</li>
+        </ol>
+      </section>
+
+      <section class="seccion centrado">
+        <a href="juego.html" class="boton boton--primario">▶ Probar ahora</a>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <span>Dino Runner · Proyecto Web Temática Libre</span>
+      <span>Programación Front End · INACAP · 2026</span>
+    </div>
+  </footer>
+
+  <script src="js/navegacion.js"></script>
+</body>
+</html>

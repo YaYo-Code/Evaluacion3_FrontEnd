@@ -1,0 +1,577 @@
+/* ============================================================
+   estilos.css  —  Estilos generales del sitio "Dino Runner"
+   Proyecto Web Temática Libre · Programación Front End · INACAP
+   Solo CSS3 propio (sin frameworks).
+   ============================================================ */
+
+/* ----------  1. VARIABLES (modo oscuro = por defecto)  ---------- */
+/* Usamos variables CSS para reutilizar colores y medidas en todo
+   el sitio. Cambiar un valor aquí lo cambia en todas las páginas. */
+:root {
+  --bg: #14171c;            /* fondo de la "pantalla" */
+  --surface: #1c2127;       /* tarjetas y paneles */
+  --surface-2: #232a32;     /* paneles secundarios */
+  --ink: #e8eaed;           /* texto principal */
+  --muted: #9aa0a6;         /* texto secundario */
+  --accent: #f4b740;        /* ámbar: color de marca */
+  --accent-2: #57c97e;      /* verde cactus: color secundario */
+  --danger: #e0552b;        /* rojo para errores */
+  --line: #2a2f37;          /* bordes y divisores */
+
+  --fuente-titulo: ui-monospace, "Cascadia Code", "Courier New", monospace;
+  --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --radio: 10px;            /* radio de borde reutilizable */
+  --ancho-max: 1100px;      /* ancho máximo del contenido */
+  --sombra: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --transicion: 180ms ease;
+}
+
+/* ----------  2. MODO CLARO (se activa con data-tema="claro")  ---------- */
+/* El interruptor en navegacion.js agrega este atributo a <html>. */
+[data-tema="claro"] {
+  --bg: #f3f1ea;
+  --surface: #ffffff;
+  --surface-2: #f6f4ee;
+  --ink: #1d2125;
+  --muted: #5f6368;
+  --accent: #c47e00;
+  --accent-2: #2e9152;
+  --danger: #c0451f;
+  --line: #e2ded3;
+  --sombra: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+
+/* ----------  3. RESET BÁSICO Y TIPOGRAFÍA  ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--fuente-texto);
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulo);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Foco visible para accesibilidad (navegación con teclado). */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ----------  4. CONTENEDOR REUTILIZABLE  ---------- */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ----------  5. ENCABEZADO Y NAVEGACIÓN  ---------- */
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(6px);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav__logo span {
+  color: var(--accent);
+}
+
+/* Mini dino dibujado con CSS para el logo (cuadraditos = pixeles). */
+.logo-dino {
+  width: 26px;
+  height: 26px;
+  background:
+    linear-gradient(var(--accent-2) 0 0) 0 0 / 100% 100% no-repeat;
+  clip-path: polygon(
+    0% 55%, 15% 55%, 15% 40%, 30% 40%, 30% 20%,
+    70% 20%, 70% 0%, 100% 0%, 100% 55%, 80% 55%,
+    80% 75%, 60% 75%, 60% 100%, 45% 100%, 45% 75%,
+    30% 75%, 30% 100%, 15% 100%, 15% 75%, 0% 75%
+  );
+}
+
+.nav__lista {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+}
+
+.nav__lista a {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: var(--radio);
+  color: var(--ink);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+
+.nav__lista a:hover {
+  background-color: var(--surface-2);
+}
+
+/* La clase .activo marca la página actual (se pone en cada HTML). */
+.nav__lista a.activo {
+  color: var(--accent);
+  background-color: var(--surface-2);
+}
+
+/* Botones de acción de la barra (tema y menú móvil). */
+.nav__acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.boton-icono {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  background-color: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: transform var(--transicion), background-color var(--transicion);
+}
+
+.boton-icono:hover {
+  transform: translateY(-2px);
+}
+
+/* Botón hamburguesa: oculto en escritorio, visible en móvil. */
+.nav__hamburguesa {
+  display: none;
+}
+
+/* ----------  6. BOTONES  ---------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--transicion), filter var(--transicion);
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.boton--primario {
+  background-color: var(--accent);
+  color: #1a1300;
+}
+
+.boton--secundario {
+  background-color: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.boton--peligro {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+/* ----------  7. SECCIONES Y TARJETAS  ---------- */
+main {
+  flex: 1;             /* empuja el footer hacia abajo */
+  padding: 48px 0;
+}
+
+.seccion {
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--fuente-titulo);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.titulo-seccion {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  margin-bottom: 14px;
+}
+
+.texto-guia {
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.tarjeta {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radio);
+  padding: 24px;
+  box-shadow: var(--sombra);
+}
+
+/* Grilla reutilizable de tarjetas. */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Divisor con estética de "horizonte del desierto" (línea punteada). */
+.horizonte {
+  height: 0;
+  border: none;
+  border-top: 3px dotted var(--line);
+  margin: 40px 0;
+}
+
+/* ----------  8. HERO (portada)  ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+  padding: 40px 0 24px;
+}
+
+.hero__titulo {
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  margin-bottom: 18px;
+}
+
+.hero__titulo b {
+  color: var(--accent);
+}
+
+.hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+/* Panel decorativo del hero con un dino y cactus en CSS. */
+.hero__panel {
+  background:
+    linear-gradient(180deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--line);
+  border-radius: var(--radio);
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__panel::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  border-top: 3px dotted var(--line);
+}
+
+/* ----------  9. FORMULARIO  ---------- */
+.formulario {
+  display: grid;
+  gap: 18px;
+  max-width: 560px;
+}
+
+.campo {
+  display: grid;
+  gap: 6px;
+}
+
+.campo label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radio);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  transition: border-color var(--transicion);
+}
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* Estado de error pintado por JS (clase .tiene-error). */
+.campo.tiene-error input,
+.campo.tiene-error textarea,
+.campo.tiene-error select {
+  border-color: var(--danger);
+}
+
+.campo__error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  min-height: 1.1em;
+}
+
+/* Mensaje global del formulario (éxito / error). */
+.aviso {
+  padding: 14px 16px;
+  border-radius: var(--radio);
+  font-weight: 600;
+  display: none;            /* JS lo muestra cuando corresponde */
+}
+
+.aviso--ok {
+  background-color: rgba(87, 201, 126, 0.15);
+  border: 1px solid var(--accent-2);
+  color: var(--accent-2);
+}
+
+.aviso--error {
+  background-color: rgba(224, 85, 43, 0.15);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+/* ----------  10. TABLA DE PUNTAJES  ---------- */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: var(--radio);
+}
+
+.tabla th,
+.tabla td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.tabla th {
+  background-color: var(--surface-2);
+  font-family: var(--fuente-titulo);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tabla tbody tr:hover {
+  background-color: var(--surface-2);
+}
+
+.medalla {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.estado-vacio {
+  text-align: center;
+  color: var(--muted);
+  padding: 40px 20px;
+}
+
+/* ----------  11. PIE DE PÁGINA  ---------- */
+.pie {
+  border-top: 1px solid var(--line);
+  background-color: var(--surface);
+  padding: 28px 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.pie__fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ----------  12. LISTAS DE CONTENIDO  ---------- */
+.lista-pasos {
+  list-style: none;
+  display: grid;
+  gap: 14px;
+  counter-reset: paso;
+}
+
+.lista-pasos li {
+  position: relative;
+  padding-left: 48px;
+  counter-increment: paso;
+}
+
+.lista-pasos li::before {
+  content: counter(paso);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  background-color: var(--accent);
+  color: #1a1300;
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+.teclas {
+  display: inline-flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+kbd {
+  font-family: var(--fuente-titulo);
+  background-color: var(--surface-2);
+  border: 1px solid var(--line);
+  border-bottom-width: 3px;
+  border-radius: 6px;
+  padding: 3px 9px;
+  font-size: 0.85rem;
+}
+
+/* ----------  13. UTILIDADES  ---------- */
+.centrado { text-align: center; }
+.mt-grande { margin-top: 32px; }
+.oculto { display: none !important; }
+
+/* ----------  14. RESPONSIVE (media queries)  ---------- */
+/* Tablet y móvil: la barra muestra hamburguesa y el menú se apila. */
+@media (max-width: 760px) {
+  .nav__hamburguesa {
+    display: grid;
+  }
+
+  .nav__lista {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--line);
+    padding: 8px;
+    /* El menú arranca cerrado; navegacion.js le quita .oculto. */
+  }
+
+  .nav__lista a {
+    padding: 14px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__panel {
+    order: -1;
+    height: 200px;
+  }
+
+  .pie__fila {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 32px 0;
+  }
+
+  .boton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Respeta a quienes prefieren menos animación. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
