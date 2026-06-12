@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnBorrar = document.getElementById("btnBorrarRanking");
 
   if (!cuerpoTabla) return; // No estamos en la página de puntajes.
+  console.log("[puntajes] Página de ranking cargada");
 
   const CLAVE_PUNTAJES = "dino_puntajes";
 
@@ -24,7 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
       lista = [];
     }
     // Ordenamos de mayor a menor y dejamos los 10 mejores.
-    return lista.sort((a, b) => b.puntaje - a.puntaje).slice(0, 10);
+    const ordenada = lista.sort((a, b) => b.puntaje - a.puntaje).slice(0, 10);
+    console.log("[puntajes] Registros leídos de localStorage:", lista.length, "| mostrando:", ordenada.length);
+    return ordenada;
   }
 
   /* Dibuja la tabla en pantalla a partir de la lista. */
@@ -71,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!seguro) return;
       try {
         localStorage.removeItem(CLAVE_PUNTAJES);
+        console.log("[puntajes] Historial de puntajes borrado");
       } catch (error) { /* se ignora */ }
       mostrarRanking();
     });

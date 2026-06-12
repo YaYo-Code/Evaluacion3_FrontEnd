@@ -9,6 +9,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const formulario = document.getElementById("formContacto");
   if (!formulario) return; // No estamos en la página de contacto.
+  console.log("[contacto] Formulario detectado: validación activada");
 
   const avisoGlobal = document.getElementById("avisoFormulario");
 
@@ -56,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const regla = reglas[campo.name];
     if (!regla) return true;
     const error = regla(campo.value);
+    console.log("[contacto] Validando campo '" + campo.name + "':", error ? "no válido - " + error : "válido");
     mostrarError(campo, error);
     return error === "";
   }
@@ -68,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Al enviar: validamos TODO. Si hay errores, no enviamos. */
   formulario.addEventListener("submit", (evento) => {
     evento.preventDefault(); // controlamos el envío nosotros
+    console.log("[contacto] Intento de envío: validando todos los campos");
 
     let todoOk = true;
     formulario.querySelectorAll("input, textarea, select").forEach((campo) => {
@@ -75,11 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (!todoOk) {
+      console.warn("[contacto] Envío bloqueado: hay campos con errores");
       mostrarAviso("Revisa los campos marcados en rojo.", "error");
       return;
     }
 
     // Todo correcto: mostramos éxito y limpiamos el formulario.
+    console.log("[contacto] Formulario válido: mensaje enviado");
     mostrarAviso("¡Mensaje enviado! Te responderemos pronto. 🦖", "ok");
     formulario.reset();
   });

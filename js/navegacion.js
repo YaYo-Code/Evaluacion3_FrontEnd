@@ -8,6 +8,7 @@
 
 /* Esperamos a que el HTML esté cargado para tomar los elementos. */
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("[navegacion] DOM cargado: iniciando menú móvil y tema");
   iniciarMenuMovil();
   iniciarTema();
 });
@@ -27,8 +28,10 @@ function iniciarMenuMovil() {
   boton.addEventListener("click", () => {
     const estaAbierto = !lista.classList.contains("oculto");
     if (estaAbierto) {
+      console.log("[navegacion] Cerrando menú móvil");
       cerrarMenu();
     } else {
+      console.log("[navegacion] Abriendo menú móvil");
       lista.classList.remove("oculto");
       boton.setAttribute("aria-expanded", "true");
     }
@@ -56,6 +59,7 @@ function iniciarTema() {
 
   // Aplicamos el tema guardado apenas carga la página.
   const temaGuardado = leerTemaGuardado();
+  console.log("[navegacion] Tema guardado leído:", temaGuardado);
   aplicarTema(temaGuardado);
 
   if (!boton) return;
@@ -64,6 +68,7 @@ function iniciarTema() {
     // Si está en claro pasamos a oscuro y viceversa.
     const actual = document.documentElement.getAttribute("data-tema");
     const nuevo = actual === "claro" ? "oscuro" : "claro";
+    console.log("[navegacion] Cambiando tema:", actual, "->", nuevo);
     aplicarTema(nuevo);
     guardarTema(nuevo);
   });

@@ -16,6 +16,7 @@ function iniciarJuego() {
   const lienzo = document.getElementById("lienzoJuego");
   if (!lienzo) return; // No estamos en la página del juego.
   const ctx = lienzo.getContext("2d");
+  console.log("[juego] Motor del Dino Runner iniciado");
 
   /* -------------------- CONFIGURACIÓN -------------------- */
   const ANCHO = 640;            // ancho lógico del lienzo
@@ -94,8 +95,10 @@ function iniciarJuego() {
       try {
         const Clase = window.AudioContext || window.webkitAudioContext;
         contextoAudio = new Clase();
+        console.log("[juego] Contexto de audio (Web Audio API) creado");
       } catch (error) {
         contextoAudio = null;
+        console.warn("[juego] No se pudo crear el contexto de audio");
       }
     }
   }
@@ -130,11 +133,13 @@ function iniciarJuego() {
     dino.enSalto = true;
     dino.agachado = false;
     reproducirBip(620, 0.08);
+    console.log("[juego] Acción: saltar");
   }
 
   // Activa o desactiva la postura agachada.
   function agacharse(activar) {
     dino.agachado = activar && !dino.enSalto;
+    if (dino.agachado) console.log("[juego] Acción: agacharse");
   }
 
   // Aplica gravedad y mantiene al dino sobre el suelo.
@@ -198,6 +203,7 @@ function iniciarJuego() {
       // Aves a tres alturas distintas (algunas obligan a agacharse).
       const alturas = [PISO_Y - 80, PISO_Y - 52, PISO_Y - 30];
       const y = alturas[Math.floor(Math.random() * alturas.length)];
+      console.log("[juego] Obstáculo generado: ave");
       return { tipo: "ave", x: ANCHO + 20, y: y, ancho: 42, alto: 28, frame: 0 };
     }
 
@@ -206,6 +212,7 @@ function iniciarJuego() {
     const grande = Math.random() < 0.4;
     const altoCactus = grande ? 50 : 36;
     const anchoUnidad = grande ? 22 : 18;
+    console.log("[juego] Obstáculo generado: cactus x" + cantidad + (grande ? " (grande)" : ""));
     return {
       tipo: "cactus",
       x: ANCHO + 20,
@@ -266,10 +273,13 @@ function iniciarJuego() {
       proximoHito += 100;
       velocidad = Math.min(velocidad + 22, VEL_MAXIMA);
       reproducirBip(880, 0.07);
+      console.log("[juego] Hito alcanzado:", proximoHito - 100, "pts | velocidad:", Math.round(velocidad));
 
       // BLOQUE 5: cada 700 puntos cambia de día a noche.
+      const eraNoche = esNoche;
       if (Math.floor(puntaje / 700) % 2 === 1) esNoche = true;
       else esNoche = false;
+      if (esNoche !== eraNoche) console.log("[juego] Ciclo día/noche ->", esNoche ? "noche" : "día");
     }
   }
 
@@ -306,8 +316,10 @@ function iniciarJuego() {
       const lista = JSON.parse(localStorage.getItem(CLAVE_PUNTAJES)) || [];
       lista.push(registro);
       localStorage.setItem(CLAVE_PUNTAJES, JSON.stringify(lista));
+      console.log("[juego] Puntaje guardado en ranking:", registro);
       return true;
     } catch (error) {
+      console.warn("[juego] No se pudo guardar el puntaje en localStorage");
       return false;
     }
   }
@@ -514,6 +526,7 @@ function iniciarJuego() {
     estado = "jugando";
     if (capaInicio) capaInicio.classList.add("oculto");
     if (capaFin) capaFin.classList.add("oculto");
+    console.log("[juego] Estado -> jugando (partida iniciada)");
   }
 
   function reiniciar() {
@@ -531,16 +544,19 @@ function iniciarJuego() {
     actualizarMarcador();
     if (capaFin) capaFin.classList.add("oculto");
     estado = "jugando";
+    console.log("[juego] Estado -> jugando (partida reiniciada)");
   }
 
   function terminar() {
     estado = "fin";
     reproducirBip(160, 0.25);
     const final = Math.floor(puntaje);
+    console.log("[juego] Estado -> fin. Puntaje:", final, "| Récord:", record);
 
     if (final > record) {
       record = final;
       guardarRecord(record);
+      console.log("[juego] ¡Nuevo récord!:", record);
     }
     if (elPuntajeFinal) elPuntajeFinal.textContent = String(final).padStart(5, "0");
     if (capaFin) capaFin.classList.remove("oculto");
@@ -550,9 +566,11 @@ function iniciarJuego() {
     if (estado === "jugando") {
       estado = "pausa";
       if (capaPausa) capaPausa.classList.remove("oculto");
+      console.log("[juego] Estado -> pausa");
     } else if (estado === "pausa") {
       estado = "jugando";
       if (capaPausa) capaPausa.classList.add("oculto");
+      console.log("[juego] Estado -> jugando (reanudado)");
     }
   }
 
@@ -566,6 +584,7 @@ function iniciarJuego() {
       sonidoActivo = !sonidoActivo;
       guardarSonidoActivo(sonidoActivo);
       actualizarBotonSonido();
+      console.log("[juego] Sonido:", sonidoActivo ? "activado" : "silenciado");
     });
   }
 
@@ -601,4 +620,5 @@ function iniciarJuego() {
   /* -------------------- ARRANQUE -------------------- */
   actualizarMarcador();
   requestAnimationFrame(bucle); // dibuja la pantalla "listo"
+  console.log("[juego] Listo para jugar (pantalla de inicio dibujada)");
 }
